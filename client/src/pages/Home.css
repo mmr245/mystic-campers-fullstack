@@ -1,0 +1,136 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container fills the entire viewport, split into 2 equal halves vertically */
+.home-container {
+  height: 100vh; /* full viewport height */
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+}
+
+/* Each half takes exactly 50% of the height */
+.half {
+  flex: 1; /* 50% of viewport height each */
+  display: flex;
+  position: relative; /* for overlay content inside top-half */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Top half: carousel fills entire space */
+.top-half {
+  /* no extra styles needed, flex handles height */
+}
+
+/* Banner carousel fills the entire top half */
+.banner-carousel {
+  width: 100%;
+  height: 100%; /* fill parent */
+  position: relative;
+}
+
+/* Make the banner images cover the entire carousel area */
+.banner-carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fill without distortion */
+  display: block;
+}
+
+/* Optional overlay content inside top half (like hero text) */
+.hero {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.3); /* optional overlay for contrast */
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+.hero p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+.cta-button {
+  background-color: #fdd059;
+  color: #1d2429;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1em;
+  text-decoration: none;
+}
+.cta-button:hover {
+  background-color: #e0b849;
+}
+
+/* Bottom half: featured products */
+.bottom-half {
+  overflow-y: auto; /* scroll if content overflows */
+  padding: 20px;
+  background-color: #f0f0dc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style for the "Our picks" title */
+.recommended-section h2 {
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  text-align: center;
+}
+
+/* Products row layout */
+.product-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Product card styles */
+.product-card {
+  background: #333;
+  padding: 10px;
+  border-radius: 8px;
+  width: 200px;
+  color: #fff;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.product-card img {
+  max-width: 100%;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+h3 {
+  font-size: 1.1em;
+  margin-bottom: 5px;
+}
+p {
+  font-size: 1em;
+  color: #fdd059;
+}

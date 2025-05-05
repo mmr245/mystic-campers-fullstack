@@ -1,0 +1,146 @@
+/*
+  Layout.css
+  Authored by: Aj Rose
+  Date: 4/27/2025
+  ---------
+  Mobile-first responsive layout.
+  Switch logos and branding visibility based on viewport width.
+*/
+
+header {
+    display: flex;
+    align-items: center;
+    /* vertical centering */
+    justify-content: space-between;
+    /* space logo on the left, nav on the right */
+    padding: 0 1rem;
+    /* horizontal breathing room */
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site-header {
+    background-color: #1d2429;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid #b8a454;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1em 1em;
+}
+
+.logo {
+    height: 50px;
+}
+
+.hamburger-icon {
+    color: #b8a454;
+}
+
+/* Mobile-first: show mobile logo, hide desktop logo */
+.mobile-logo {
+    display: block;
+    margin-right: .5em;
+    max-width: 70px;
+    width: 100%;
+    height: auto;
+}
+
+.desktop-logo {
+    display: none;
+    max-width: 250px;
+    min-width: 150px;
+    width: 100%;
+    height: auto;
+}
+
+.branding {
+    /* Show branding on mobile */
+    display: block;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.nav-links ul {
+    display: none;
+    flex-direction: column;
+    margin: 0;
+    padding: 1rem;
+    background-color: #1d2429;
+    list-style: none;
+}
+
+.nav-links.show ul {
+    display: flex;
+}
+
+.nav-links ul li {
+    margin: 0.5rem 0;
+}
+
+.nav-links ul li a {
+    text-decoration: none;
+    color: #d4c0c0;
+    font-weight: 500;
+}
+
+.site-main {
+    flex: 1;
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.site-footer {
+    background-color: #1d2429;
+    text-align: center;
+    padding: 1rem 0;
+    border-top: 2px solid #b8a454;
+}
+
+/* Desktop breakpoint: switch logos and branding */
+@media (min-width: 768px) {
+    .mobile-logo {
+        display: none;
+    }
+
+    .desktop-logo {
+        display: block;
+    }
+
+    .branding {
+        /* Hide branding on desktop */
+        display: none;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .nav-links ul {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+    }
+
+    .nav-links ul li {
+        white-space: nowrap;
+        margin: 0 1rem;
+    }
+}

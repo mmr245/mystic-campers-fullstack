@@ -1,0 +1,76 @@
+/* -------- Mobile-First ------- */
+.filters {
+    display: flex;
+    flex-direction: column;    /* stack groups on mobile */
+    align-items: stretch;
+    gap: 0.5rem;               /* tighter spacing for small screens */
+    padding: 0.5rem;
+    background: #e5dbca;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filters > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;               /* full-width filter groups */
+  }
+  
+  .filters label {
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #2f4f4f;
+  }
+  
+  .filters input,
+  .filters select {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    border: 1px solid #b8a454;
+    border-radius: 0.5rem;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .filters input:focus,
+  .filters select:focus {
+    border-color: #6b8e23;
+    box-shadow: 0 0 0 2px rgba(184, 164, 84, 0.3);
+    outline: none;
+  }
+  
+  .price-range {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .price-range input {
+    width: 100%;
+    max-width: 4rem;
+  }
+  
+  .price-range span {
+    color: #2f4f4f;
+    font-weight: 600;
+  }
+  
+  /* ——— Tablet & Desktop ——— */
+  @media (min-width: 768px) {
+    .filters {
+      flex-direction: row;         /* row layout on larger screens */
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem;
+    }
+  
+    .filters > div {
+      width: auto;                 /* auto width per group */
+    }
+  
+    .price-range input {
+      width: 4rem;                 /* fixed width for min/max */
+    }
+  }

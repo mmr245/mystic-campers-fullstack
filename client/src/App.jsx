@@ -1,46 +1,56 @@
-import { use, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import axios from 'axios'
-import { useEffect } from 'react'
 
+import React from 'react';
+import './App.css';
+import Layout from './components/Layout/Layout';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/HomePage'; 
+import Shop from './pages/ShopPage';
+import About from './pages/AboutUs/AboutPage';
+import Lore from './pages/AboutUs/Lore';
+import Team from './pages/AboutUs/Team';
+import Hunt from './pages/TheHunt/HuntPage';
+import HowToPlay from './pages/TheHunt/HowToPlay';
+import ScavengerHunt from './pages/TheHunt/ScavengerHunt';
+import Blog from './pages/TheHunt/Blog';
+import BrushWithTheWendingo from './pages/TheHunt/Blog/BrushWithTheWendingo';
+import IntoTheUnknown from './pages/TheHunt/Blog/IntoTheUnknown';
+import TheNightItStarted from './pages/TheHunt/Blog/TheNightItStarted';
+import Contact from './pages/ContactPage';
+import Account from './pages/AccountPage';
+import Cart from './pages/CartPage';
+import GamePage from './pages/TheHunt/GamePage';
+import NotFound from './pages/NotFoundPage';
+import products from './data/products';
+import ProductDetailPage from './pages/ProductDetailsPage';
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  const fetchAPI = async () => {
-    const response = await axios.get('http://localhost:3001/api');
-  };
-
-  useEffect(() => { 
-    fetchAPI();
-  }, []);
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/shop" element={<Shop products={products} />} />
+        <Route
+          path="/shop/:id"
+          element={<ProductDetailPage products={products} />}
+        />
+        <Route path="/about" element={<About />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/brushwiththewendingo" element={<BrushWithTheWendingo />} />
+        <Route path="/intotheunknown" element={<IntoTheUnknown />} />
+        <Route path="/thenightitstarted" element={<TheNightItStarted />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/hunt" element={<Hunt />} />
+        <Route path="/howtoplay" element={<HowToPlay />} />
+        <Route path="/scavengerhunt" element={<ScavengerHunt />} />
+        <Route path="/lore" element={<Lore />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/game" element={<GamePage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Layout>
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,135 @@
+/* 1) Global variables */
+:root {
+  --color-dark:   #1d2429;
+  --color-beige:  #e5dbca;
+  --color-green:  #77a290;
+  --color-yellow: #fdd059;
+}
+
+/* Page wrapper */
+.cart-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Empty-cart state */
+.empty-cart {
+  text-align: center;
+  font-style: italic;
+  color: var(--color-dark);
+}
+
+/* Item “card” (mobile stacking) */
+.cart-item-card {
+  background-color: var(--color-beige);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(29, 36, 41, 0.1);
+  color: var(--color-dark);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Image full-width on mobile */
+.cart-item-image {
+  border-radius: 4px;
+  max-width: 100%;
+  object-fit: cover;
+  margin-bottom: 0.75rem;
+}
+
+/* Details area */
+.cart-item-details {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Name & price */
+.cart-item-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--color-dark);
+}
+
+.cart-item-price {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  color: var(--color-green);
+}
+
+/* Qty label & input */
+.cart-item-qty {
+  margin-bottom: 0.75rem;
+}
+
+.cart-item-qty label {
+  font-size: 1rem;
+  font-weight: normal;
+  color: var(--color-dark);
+}
+
+.cart-item-qty input {
+  width: 4rem;
+  margin-left: 0.5rem;
+  padding: 0.25rem;
+  border: 1px solid var(--color-dark);
+  border-radius: 4px;
+  color: var(--color-dark);
+}
+
+/* Remove button */
+.cart-item-remove {
+  align-self: flex-start;
+  background-color: var(--color-yellow);
+  color: var(--color-dark);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.cart-item-remove:hover {
+  background-color: #e0c64e; /* hover matches ProductCard */
+}
+
+/* 10) Total line */
+.cart-total {
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-beige);
+  margin-top: 1rem;
+}
+
+.empty-cart {
+  font-size: 1.5rem;
+  color: var(--color-yellow);
+}
+
+.checkout-btn {
+  display: block;
+  margin: 1rem auto 0; /* top margin, auto left/right, no bottom margin */
+}
+
+/* Tablet & up (row layout at 768px) */
+@media (min-width: 768px) {
+  .cart-item-card {
+    flex-direction: row;
+    align-items: center;
+  }
+  .cart-item-image {
+    width: 100px;
+    height: 100px;
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+  .cart-item-details {
+    flex: 1;
+  }
+}

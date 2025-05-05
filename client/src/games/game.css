@@ -1,0 +1,68 @@
+.hangman-container {
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+    font-family: sans-serif;
+    color: #eee;
+  }
+  
+  #hangman-image {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+  }
+  
+  #word {
+    font-size: 2rem;
+    letter-spacing: 0.5rem;
+    margin: 20px 0;
+  }
+  
+  #attempts,
+  #letters-guessed,
+  #message,
+  #hint {
+    margin: 10px 0;
+  }
+  
+  #hint {
+    display: none;    /* JS will toggle this on hint-button click */
+    font-style: italic;
+  }
+  
+  #letter-bank span {
+    display: inline-block;
+    margin: 4px;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #444;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  #letter-bank span.guessed {
+    background-color: #222;
+    color: #888;
+    pointer-events: none;
+  }
+  
+  #guess-input,
+  #full-word-input {
+    padding: 8px;
+    font-size: 1rem;
+    width: 150px;
+    margin-right: 8px;
+  }
+  
+  button {
+    padding: 8px 12px;
+    font-size: 1rem;
+    margin: 4px;
+    cursor: pointer;
+  }
+  
+  #hint-btn {
+    margin-left: 10px;
+  }
