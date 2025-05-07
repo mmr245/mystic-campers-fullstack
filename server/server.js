@@ -41,8 +41,44 @@ app.post('/submit', (req, res) => {
     });
 });
 
+// New User DB connection
+const user_DB = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "admin",
+    database: "user_db",
+});
+
+user_DB.connect((err) => {
+    if (err) console.error("User_DB connection error:", err);
+    else console.log("Connected to user_db");
+});
+
+
+// Route for Signup Form submission
+app.post('/signup', (req, res) => {
+    const { username, email, password } = req.body;
+
+    // Basic validation
+    if (!username || !email || !password) {
+        return res.status(400).json({ error: "All fields are required." });
+    }
+
+    // Insert new user into user_db.users
+    const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
+    user_DB.query(sql, [username, email, password], (err, result) => {
+        if (err) {
+            if (err.code === 'ER_DUP_ENTRY') {
+                return res.status(409).json({ error: "Email already registered." });
+            }
+            return res.status(500).json({ error: err.message });
+        }
+        res.status(201).json({ message: "User created successfully.", userId: result.insertId });
+    });
+});
 
 // Server runs on port 3001
 app.listen(3001, () => {
     console.log("Server is running on port 3001");
 });
+
