@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const mysql = require("mysql2");
@@ -15,17 +16,20 @@ app.get("/api", (req, res) => {
     res.json({ message: "Hello from the server!" });
 });
 
-// MySQL Connection to Contact Form
-const contact_DB = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "admin",
-    database: "contact_db", // Database for contact form messages
+// DB connection using 1 schema
+const db = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
 
-contact_DB.connect((err) => {
-    if (err) console.error("Contact_DB connection error:", err);
-    else console.log("Connected to contact_db");
+db.connect(err => {
+    if (err) {
+        console.error('❌ DB connection failed:', err);
+        process.exit(1);
+    }
+    console.log('✅ Connected to', process.env.DB_NAME);
 });
 
 //Route to insert contact form data
@@ -33,27 +37,13 @@ app.post('/submit', (req, res) => {
     const { name, email, message } = req.body;
     if (!name || !email || !message) {
         return res.status(400).json({ error: "All fields are required." });
-      }
+    }
     const sql = 'INSERT INTO messages (name, email, message) VALUES (?, ?, ?)';
-    contact_DB.query(sql, [name, email, message], (err, result) => {
+    db.query(sql, [name, email, message], (err, result) => {
         if (err) return res.status(500).json({ error: err.message });
         res.json({ message: 'Message Submitted!', result });
     });
 });
-
-// New User DB connection
-const user_DB = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "admin",
-    database: "user_db",
-});
-
-user_DB.connect((err) => {
-    if (err) console.error("User_DB connection error:", err);
-    else console.log("Connected to user_db");
-});
-
 
 // Route for Signup Form submission
 app.post('/signup', (req, res) => {
@@ -66,7 +56,7 @@ app.post('/signup', (req, res) => {
 
     // Insert new user into user_db.users
     const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
-    user_DB.query(sql, [username, email, password], (err, result) => {
+    db.query(sql, [username, email, password], (err, result) => {
         if (err) {
             if (err.code === 'ER_DUP_ENTRY') {
                 return res.status(409).json({ error: "Email already registered." });
