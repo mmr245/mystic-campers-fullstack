@@ -8,7 +8,7 @@ const ContactUs = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:3001/submit", formData);
+      await axios.post("http://localhost:3001/api/submit", formData);
       setSubmitted(true);
       // reset form fields
       setFormData({ name: "", email: "", message: "" });
