@@ -94,4 +94,23 @@ router.post('/orders', async (req, res, next) => {
   }
 });
 
+// new: GET all messages
+router.get('/messages', async (req, res, next) => {
+  try {
+    const [rows] = await pool.query(`
+      SELECT 
+        id,
+        name,
+        email,
+        message,
+        created_at
+      FROM messages
+      ORDER BY created_at DESC
+    `);
+    res.json(rows);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
