@@ -47,6 +47,10 @@ function cartReducer(state, action) {
         )
       }
 
+      case 'CLEAR_CART':
+      // reset cart to empty array (or your initial shape)
+      return []
+
     default:
       throw new Error(`Unhandled action type: ${action.type}`)
   }

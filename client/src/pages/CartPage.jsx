@@ -1,10 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useCart, useDispatchCart } from '../context/CartContext'
 import './CartPage.css'
 
 export default function CartPage() {
   const { items } = useCart()
   const dispatch = useDispatchCart()
+  const navigate = useNavigate()
 
   const updateQty = (id, qty) => {
     if (qty < 1) return
@@ -69,11 +71,12 @@ export default function CartPage() {
       </p>
 
       <button
-        className="checkout-btn"           
-        onClick={() => {/* TODO: navigate to checkout this is non functioning rn*/}}
+        className="checkout-btn"
+        onClick={() => navigate('/checkout')}
       >
         Proceed to checkout
       </button>
+
     </div>
   )
 }

@@ -18,10 +18,12 @@ import TheNightItStarted from './pages/TheHunt/Blog/TheNightItStarted';
 import Contact from './pages/ContactPage';
 import Account from './pages/AccountPage';
 import Cart from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
 import GamePage from './pages/TheHunt/GamePage';
 import NotFound from './pages/NotFoundPage';
 import products from './data/products';
 import ProductDetailPage from './pages/ProductDetailsPage';
+import ThankYouPage from './pages/ThankYou';
 
 function App() {
   return (
@@ -41,12 +43,14 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/account" element={<Account />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/hunt" element={<Hunt />} />
         <Route path="/howtoplay" element={<HowToPlay />} />
         <Route path="/scavengerhunt" element={<ScavengerHunt />} />
         <Route path="/lore" element={<Lore />} />
         <Route path="/team" element={<Team />} />
         <Route path="/game" element={<GamePage />} />
+        <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>

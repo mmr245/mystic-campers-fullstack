@@ -2,7 +2,6 @@ require('dotenv').config();
 const express    = require('express');
 const cors       = require('cors');
 const sqlRouter  = require('./routes/sqlRoutes');
-app.use('/api', sqlRouter);
 
 const app = express();
 

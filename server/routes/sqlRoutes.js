@@ -47,4 +47,51 @@ router.post('/signup', async (req, res, next) => {
   }
 });
 
+// POST /api/orders
+router.post('/orders', async (req, res, next) => {
+  console.log('→ POST /api/orders', req.body);
+
+  const {
+    user_id = null,
+    items,
+    full_name,
+    shipping_address,
+    shipping_option,
+    total_cost,
+    payment_info
+  } = req.body;
+
+  if (!Array.isArray(items) || items.length === 0) {
+    return res.status(400).json({ error: 'Order must include at least one item.' });
+  }
+
+  try {
+    // Insert one row per item (not the most efficient, but simple) Im feeling
+    await Promise.all(
+      items.map(({ product_id, qty }) =>
+        pool.execute(
+          `INSERT INTO orders
+             (user_id, product_id, full_name, shipping_address, shipping_option, total_cost, payment_info)
+           VALUES (?, ?, ?, ?, ?, ?, ?)`,
+          [
+            user_id,
+            product_id,
+            full_name,
+            shipping_address,
+            shipping_option,
+            total_cost,
+            JSON.stringify(payment_info)
+          ]
+        )
+      )
+    );
+
+    res.status(201).json({ message: 'Order placed successfully.' });
+  } catch (err) {
+    console.error('Order insertion error:', err);
+    // send back the SQL error message for easier debugging
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
